@@ -1,0 +1,32 @@
+1. This query will return all the documents that match with the given filter object ie wo object jinme given ppt match ho rahi ho.
+
+a. rating = 4 wale
+db.items.find({rating:"4"})
+
+b. rating greater than equal to 3 wale
+db.items.find({rating:{$gte:"3"}})
+
+c. rating greater than 3 wale
+db.items.find({rating:{$gt:"3"}})
+
+for Less than equal to - $lte
+for Less than - $lt
+
+Note - maine kyoki rating as a string di thi yani "" me to mujhe query karte waqt bhi "" use karne padenge.
+
+2. multiple ppt checks in a single query, basically queries ka AND.
+ex - db.items.find({rating:"4",qty:"200"})
+rating 4 ho aur qty 200 ho.
+
+3. Queries ka OR -
+db.items.find({$or:[{rating:{$lt:"4"}},{price:{$gte:"10000"}}]})
+
+4. find() me 2nd arguement as projection bhi de sakte he -
+projection yani ki wo wo cheeze/columns jo mai returned document ki dekhna chahta hu as a result of a query.
+ex 1 - db.items.find({rating:{$gt:"3"}},{rating:1})
+yaha pe mai ye keh raha hu ki mujhe wo wale documents ki sirf rating dikha do jinme rating is > 3
+ex 2 - db.items.find({rating:{$gt:"3"}},{rating:1,price:1})
+yaha pe mai ye keh raha hu ki mujhe wo wale documents ki sirf rating, price dikha do jinme rating is > 3
+
+5. Ab manlo ek particular range of values me fall hone wale documents chahiye -
+db.items.find({rating:{$lt:"4",$gte:"2"}})

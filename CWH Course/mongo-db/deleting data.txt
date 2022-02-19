@@ -1,0 +1,4 @@
+db.items.deleteOne({rating:4})
+Above command (deleteOne) will delete the 1st matching document (yani uparse pehli) from a collection
+
+deleteMany() will delete all the matching documents from collections. 

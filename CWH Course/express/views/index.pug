@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Plain HTML in Pug</title>
+    <!-- Including a .css file for styling this .pug html template file -->
+    <!-- style ke baad NEWLINE phir INDENT phir baki ka -->
+    style
+        include ../static/style.css
+    <!-- ../ means ek directory upar aao. -->
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About</a></li>
+            <li><a href="/">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Agr mai pug ke andar plain html use karke html template banwana chahta hu to mai variables ki |supplied value ko use karne ke liye #{variable_name} wala syntax use karunga-->
+        <h1>#{heading}</h1>
+        <p>
+            <!-- agr kisi tag ke andar maine multi-lines use kari he to har ek indivisual line ke pehle mujhe | pipe character use karna padega. Like here, p tab has multiple lines so I have to add | before every line. Note - This is all Pug syntax, has no connection with html. -->
+            |#{content}
+        </p>
+        <form action="/" method="POST" id="contact">
+            <!-- / matlab mai POST request "/" pe dunga, yani is data ko "/" ki post request pe bheja jaega -->
+            <input type="text" name="name" id="name" placeholder="Enter your Name">
+            <input type="text" name="age" id="age" placeholder="Enter your Age">
+            <input type="text" name="gender" id="gender" placeholder="Enter your Gender">
+            <textarea name="addrs" id="addrs" cols="30" rows="10" placeholder="Enter your Address"></textarea>
+            <textarea name="about" id="about" cols="30" rows="10" placeholder="About you"></textarea>
+            <!-- Jo bhi data server pe jaega wo as JS object jaega with ppt_name as whatever is inside name -->
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+1. I will be using pug just because using pug I don't have to read html files using fs and then send them, all of this work is handled by Pug.
+
+2. .pug files me mai pure html + pug syntax dono ka simulatenously use kar sakta hu pug bura ni manega.
+
+3. Pug se mai ek base template bana ke usse extend kar sakta hu taki mujhe apne sarre pages me basic functionality mil jae. Note - While using inheritance make sure you have different .css, .js files for
+base.pug, home.pug, conatct.pug etc.

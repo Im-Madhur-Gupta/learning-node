@@ -1,0 +1,4 @@
+db.items.updateOne({name:"Samsung Note z"},{$set:{price:1800}})
+updateOne() will update only the 1st matching from the top of the document, 1st {} is the selector other {} tells what to update. Agr $set wali ppt ni mili to add ho jaegi.
+
+updateMany() me sare matching update ho jaenge.

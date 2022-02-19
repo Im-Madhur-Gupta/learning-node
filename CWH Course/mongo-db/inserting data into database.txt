@@ -1,0 +1,30 @@
+1. To select a database - use database_name
+db is used to refer to the currently selected database.
+Default database is test.
+
+2. Inserting a DOCUMENT into a COLLECTION (Table, here its name is items) made inside a DATABASE (the  currently selected one) -
+db.items.insertOne({name:"Samsung 20a",price:20000,rating:4,qty:200})
+Note - insertOne() ek object lega jisse mai insert karna chahta hu.
+
+3. insertMany() will take an array of objects to be inserted.
+db.items.insertMany([{name:"Samsung 21a",price:20900,rating:4.4,qty:220},{name:"Samsung asha",price:2000,rating:3,qty:20}])
+
+Small Note - Obviously the changes in the database are getting saved.
+
+Imp - Insert me agr maine duplicate values wale document ko insert kar diya ek collection me to wo apne duplicate walo se values me to same rahega but Mongo gives it a unique ObjectId which makes even duplicate items unique (not data wise).
+
+Imp - For inserting into a collection its not required to have only a specific schema of object. Schema can vary document to document inside the same collection.
+
+Like prev 2 insertions ke baad same collection  me ye insertion valid he -
+db.items.insertOne({faltu:true})
+
+4. To display all the currently present databases -
+show dbs
+
+5. To display the name of all the collections in the currently selected database -
+show collections
+
+6. To view a COLLECTION (yani Table) -
+db.Collection_name.find()
+
+IMP NOTE - Dont use "" (strings) for numbers to avoid problems with larger numbers. 

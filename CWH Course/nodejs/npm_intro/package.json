@@ -1,0 +1,20 @@
+{
+  "name": "npm_intro",
+  "version": "1.0.0",
+  "description": "This is a sample package.",
+  "main": "intro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sample"
+  ],
+  "author": "Madhur Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

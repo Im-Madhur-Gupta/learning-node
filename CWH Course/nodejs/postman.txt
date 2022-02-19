@@ -1,0 +1,4 @@
+API - Application Programming Interface.
+I will use postman to make get,post,delete etc requests to a URL.
+
+A post request has 2 things - 1.) a header , 2.) a body.
