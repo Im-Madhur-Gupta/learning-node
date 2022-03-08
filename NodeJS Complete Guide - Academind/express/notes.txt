@@ -1,0 +1,16 @@
+* Express.js mai kai sare middlewares (functions) hote he, jo basically parts mai response create karte he using the request, ek ke baad ek ye lagte jate he.
+
+* Ab ye middleware 3rd party / custom bhi ho sakte he zaroori ni he ki express ke hi ho.
+
+* sari routes wale middlewares "routes" folder mai.
+
+* sare html pages (ya jo bhi serve karna he user ko) wo "views" folder mai jaega.
+
+// IMPORTANT
+* "public" folder ke andar mai wo sari files dalta hu jo mai chahta hu ki publicly available ho mere server pe for use, ex - css files, some js files, img files etc.
+-> In files ko mujhe statically serve karna padta he meaning directly from the filesystem. Ye karne ke liye mujhe extra middleware setup karna padta he app.js mai.
+-> Jab mujhe html mai css, js etc files chahiye jo statically serve ho rahi he mere server pe to mujhe dhyn rakhna he ki inhe import karte waqt /_____ seedha public folder ke andar se chalu hoga.
+
+
+// VERY IMP - 
+-> app.use() mai jo path atta he wo starting se match hota he with the incoming url and but agr apn app.get(), .post(), .put() etc use karte he to wo EXACT path ko match karta he.

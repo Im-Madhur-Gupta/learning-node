@@ -1,0 +1,16 @@
+* NodeJS uses single threaded JS.
+
+* NodeJS uses an event-based approach ie jab kuch event hota he to kuch code execute hota he. Event ke corresponging event listener chal jata he. 
+
+* IMP - Node's Event Loop is a loop process that keeps on running until we have event listners registered.
+
+* Multiple incoming requests ek dusre ka data use ni kar pati kyoki har request ke corresponding createServer wala callback execute hota he, ek function call ka data dusre fucntion call ko ni milta, just bcz how JS works.
+
+* createServer() event never finishes by default.
+
+* package.json mai "start" name ki script is a special script, kyoki is script ko bina run keyword ke bhi chala sakte he.
+* for normal scripts -> npm run <script name>
+
+* package global install -> -g
+* dev dependency install -> --save-dev
+* prod dependency install -> --save
