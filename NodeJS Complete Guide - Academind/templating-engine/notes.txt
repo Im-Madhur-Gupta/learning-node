@@ -1,0 +1,28 @@
+* express app ko batana padega ki ejs use karo as "view engine".
+
+* mai "views" folder ka path bhi bata sakta hu express app ko, jisse render mai mujhe template ka pura path ni dena padega seedha views folder ke andar jaega.
+
+* To render a template you need to use res.render() inside of middleware function.
+* render() takes 2 args -
+    1. name of template you want to render (if you have specified the views folder).
+    2. parameters you want to supply to the template, in form of JS object.
+
+* IMP - variable ki value output karane ke liye syntax - <%= var_name %>,
+yaha pe hum ternary operator bhi use kar sakte he.
+
+* IMP - EJS template mai normal vanilla JS likhte he INSIDE of <% _____ %>,
+Ab yaha pe if stmt, loops jo chahe wo laga sakte ho.
+
+* Partials or Includes of EJS -
+* Can be used to reuse code blocks.
+* Simply mujhe jo bhi code re-use karna he usse mai seperate .ejs file mai dal dunga.
+* inlcuding a code block in a ejs file -
+<%- include("path_to_the_ejs_file") %>
+* Note - <%- ka matlab agr kuch html diya to wo render ho jaega
+        and <%= mai sara kuch is treated as a string/text, as it is display ho jaega.
+
+
+Summary -
+1. <%= %> -> var ki value ke liye
+2. <% %> -> vanilla js
+3. <%- %> -> html render karwane ke liye (include() ke sath use karte he)

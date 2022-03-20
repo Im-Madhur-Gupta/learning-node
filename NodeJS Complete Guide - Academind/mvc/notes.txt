@@ -1,0 +1,9 @@
+* Sare controllers ie middleware functions ko seperate folder mai rakhenge with correct file name.
+-> product.js mai sare product se related middleware functions dalenge.
+
+* import ke time controllers ki naming -> <controller name>Controllers
+* phir <controller name>Controllers.<middleware func name>
+
+* Model is basically the data we are working with along with the methods we want inorder to work with the data.
+
+* Model mai maine basically ek Product class bana li.
