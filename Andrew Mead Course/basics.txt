@@ -1,0 +1,16 @@
+* Chrome - JS in browser - provides certian functionalities like DOM manipultion. Provides objects like window (represents the browser window), document (object using which we manipulate DOM).
+
+* NodeJS - JS on local machine, outside of the browser. Here, DOM has got no meaning ie document, window objects are not present. It provides an object called global (corresponding to the global scope, kinda similar to window, sari global cheeze yaha hoti he) and an object called process (using which we can manipulate the Node process like exit() which exits the node process).
+
+* Dono mai chrome ke v8 ko uppar se functionalities (acc. to the requirements) provide kari he.
+
+* console.log() is a runtime thing not js thing.
+
+* Node mai ES6 syntax ni chalta.
+
+* I/N in nodejs using process.argv -> array of arguments provided in the commmand line.
+process.argv[0] -> node ka path
+process.argv[1] -> .js file ka path
+process.argv[2] -> the 1st agr which I provided
+
+* yargs package se mai command line arguments easily handle kar sakta hu in Node.

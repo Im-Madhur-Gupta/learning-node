@@ -1,4 +1,0 @@
-* URL parameter -> "___/:<url_parameter>/___"
-
-* Taking out the URL parameter -> req.params.<url_parameter>
--> Remember, this returns a string.

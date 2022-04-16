@@ -1,0 +1,23 @@
+[
+  {
+    "id": "123",
+    "title": "A Book",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "This is an awesome book!",
+    "price": "19"
+  },
+  {
+    "id": "0.299866789425415",
+    "title": "asd",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "dasdsad",
+    "price": "123"
+  },
+  {
+    "id": "0.3624986796186562",
+    "title": "zxc",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "qweasd",
+    "price": "32"
+  }
+]

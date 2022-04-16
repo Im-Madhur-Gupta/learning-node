@@ -1,0 +1,12 @@
+SQL             NoSQL
+Database        Database
+Tables          Collections
+Rows            Documents
+
+* Ways to connect to a SQL Database from Node -
+1. Create a connection to execute queries then close the connection once you are done.
+2. Create a connection pool. Each query needs its own connection. Pool mai se ek connection lete he then query execute karwate he then we return the connection to the pool.
+
+* Note - Array destructuring acc. to index of elements hoti he.
+         Object destructuring acc. to key names hoti he.
+

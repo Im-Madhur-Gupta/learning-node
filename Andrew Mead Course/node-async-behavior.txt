@@ -1,0 +1,9 @@
+* setTimeout() is implemented by Node and doesnt come natively with chrome v8.
+
+* JS is a single threaded language, NodeJS is therefore a single thread of JS. But what Node does is it transfers all the heavy operations to the OS / Kernel which uses multiple-threads.
+
+* In simple language, what the Event Loop does it looks at the callback queue and the function call stack. If the function call stack is empty it pushes items from the callback queue to the call stack, and the callback gets executed.
+
+* Remember - Fetch API is something that can be used only in the browser (natively). To make http requests in Node we can use Axios.
+
+* Promise.all() can be used if we want to make multiple async requests which should all be fulfilled before proceeding to later part of code.
