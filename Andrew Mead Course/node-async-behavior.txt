@@ -4,6 +4,11 @@
 
 * In simple language, what the Event Loop does it looks at the callback queue and the function call stack. If the function call stack is empty it pushes items from the callback queue to the call stack, and the callback gets executed.
 
-* Remember - Fetch API is something that can be used only in the browser (natively). To make http requests in Node we can use Axios.
+* Remember - Fetch API is something that can be used only in the browser, as its a browser API. To make http requests in Node we can use Axios package, this can also be done using built-in https node module.
+-> Jab https module se request create karoge to request ka data agr aa raha he to wo data chunks/packets mai ayega, basically, sare chunks ko collect karke rakhna padega in a Buffer phir chunks ko combine and parse karna padega to get the data.
 
 * Promise.all() can be used if we want to make multiple async requests which should all be fulfilled before proceeding to later part of code.
+
+* Agr callback func use kare he to zaroori ni he hamesha async behaviour hi ho -
+async behaviour mai callback - setTimeout(()=>{},1000)
+sync behaviour mai callback - array.filter(()=>{})

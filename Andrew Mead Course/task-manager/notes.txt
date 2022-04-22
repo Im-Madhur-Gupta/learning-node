@@ -1,0 +1,8 @@
+* "mongodb" name ka npm package he jo official mongodb wale log hi manage karte he, isse mai mongodb se connect kar sakta hu. Mongoose is a 3rd party package which makes our life easy while using mongodb in node.
+
+* jab mai MongoClient se connect karta hu tab ek connection pool banta he matlab multiple connections open ho jate he sirf ek ni.
+
+* "_id" name ka ek unique identifier mongo laga deta he har document par.
+-> This id is a 12 byte binary string.
+
+* Mongo ke kai sare methods promises ko support karte he to I'll use Promise handling instead of callbacks.
