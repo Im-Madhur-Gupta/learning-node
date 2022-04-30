@@ -6,3 +6,11 @@
 -> This id is a 12 byte binary string.
 
 * Mongo ke kai sare methods promises ko support karte he to I'll use Promise handling instead of callbacks.
+
+* Mongoose se mai data ke liye models bana sakta hu, aur in models mai types bhi defined honge jisse galat type kisi field mai na jae. So, type validation he, type casting, query building etc.
+-> model is basically my schema.
+-> Fir basically in models ke instances banate he.
+
+* Mongoose is an ODM (Object Document Mapper) - It will basically map objects we create in Node with the documents inside of Mongo. Object ko Document se map kar diya.
+
+* Mongoose behind the scenes mongodb wale module ko hi use karta he.
