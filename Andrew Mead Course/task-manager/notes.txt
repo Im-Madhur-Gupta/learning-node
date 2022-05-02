@@ -14,3 +14,17 @@
 * Mongoose is an ODM (Object Document Mapper) - It will basically map objects we create in Node with the documents inside of Mongo. Object ko Document se map kar diya.
 
 * Mongoose behind the scenes mongodb wale module ko hi use karta he.
+
+* Model ki kisi field pai validation lagana he to simply model banate waqt validate(){} function define kardo uss field ke object mai. Throw error jaha bhi gadbad ho.
+// You can use validator package to validate stuff.
+
+* Fact - REST -> Representational State Transfer.
+
+* body-parser setup karne ke liye simply following middleware sare middlewares ke pehle likhte he -
+app.use(express.json());
+
+* default status code that express sends is 200.
+
+* Small Note - Updating data is a PATCH request.
+
+* Syntax for declaring an express router - const router = new express.Router();
