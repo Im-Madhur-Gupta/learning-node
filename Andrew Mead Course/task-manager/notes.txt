@@ -28,3 +28,7 @@ app.use(express.json());
 * Small Note - Updating data is a PATCH request.
 
 * Syntax for declaring an express router - const router = new express.Router();
+
+* Hashing password before storing it in DB -
+- using the brcryptjs module.
+- Ye mai mongoose model mai middleware dalke karunga, this middleware will run BEFORE the "save" event is fired.

@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
-const User = mongoose.model("User", {
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: false,
@@ -39,5 +40,22 @@ const User = mongoose.model("User", {
     default: 0,
   },
 });
+
+// IMPORTANT - Yaha "this" binding ka imp use he, to normal function hi declare karna padega.
+// Arrow function won't do the job.
+userSchema.pre("save", async function (next) {
+  // our user object is stored in "this"
+  const user = this;
+
+  // hash the password only if it was modified
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  // call next when we are done with our middleware's body
+  next();
+});
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

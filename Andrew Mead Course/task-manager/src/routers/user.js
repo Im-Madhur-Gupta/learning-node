@@ -32,12 +32,26 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 
-router.patch("/users/:id", (req, res) => {
+router.patch("/users/:id", async (req, res) => {
   const id = req.params.id;
+  const updates = Object.keys(req.body);
+
+  // BELOW METHOD DOESNT RUN THE PASSWORD HASHING MIDDLEWARE
   // yaha pe jo update object he usmai agr koi aisi field he jo us model (schema) mai ni he to wo field ni add hogi DB ke us document mai.
-  User.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
-    .then((user) => res.send(user))
-    .catch((err) => res.status(404).send(err));
+  // User.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+  //   .then((user) => res.send(user))
+  //   .catch((err) => res.status(404).send(err));
+
+  // SO WE CHANGE IT
+  try {
+    const user = await User.findById(id);
+    updates.forEach((update) => (user[update] = req.body[update]));
+    await user.save();
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
 });
 
 router.delete("/users/:id", (req, res) => {
