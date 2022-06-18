@@ -32,3 +32,16 @@ app.use(express.json());
 * Hashing password before storing it in DB -
 - using the brcryptjs module.
 - Ye mai mongoose model mai middleware dalke karunga, this middleware will run BEFORE the "save" event is fired.
+
+* JWT - Its a string made up of 3 parts -
+<header>.<payload>.<signature>
+All 3 parts are base 64 json strings.
+Signature part is used for verification of the token.
+
+* Methods that are accessible on the Model are called Model Methods.
+- Defined using schema.statics.______
+
+* Methods that are accessible on the instances are called Instance Methods.
+- Defined using schema.methods._______
+
+* If I want my app to sign in the user from multiple devices I need to generate multiple tokens for the same account and keep a track of all of the tokens generated for an account, I can simply store all of the tokens in the user's mongodb document.

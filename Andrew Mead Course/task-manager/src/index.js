@@ -1,4 +1,4 @@
- const express = require("express");
+const express = require("express");
 require("./db/mongoose");
 
 // importing routers
@@ -8,7 +8,7 @@ const taskRouter = require("./routers/task");
 const app = express();
 
 // Heroku pe deploy karte waqt ports etc .env file mai hote he.
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // telling express to convert/parse my request's json body to js object
 // basically ye ek middleware setup kardega jo ki body-parser wala module hi use karega

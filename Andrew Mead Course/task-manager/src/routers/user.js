@@ -1,28 +1,46 @@
 const express = require("express");
+const auth = require("../middleware/auth");
 const User = require("../models/User");
 
 const router = new express.Router();
 
+// sign up
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
   try {
-    const savedUser = await user.save();
-    res.status(201).send(savedUser);
+    await user.save();
+    const token = await user.generateAuthToken();
+    res.status(201).send({ user, token });
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-router.get("/users", async (req, res) => {
+// login
+router.post("/users/login", async (req, res) => {
   try {
-    const retrivedUsers = await User.find({});
-    res.send(retrivedUsers);
+    // using a custom function that I'll define in the USER SCHEMA
+    // Such a method is called Model method.
+    const user = await User.findByCredentials(
+      req.body.email,
+      req.body.password
+    );
+    const token = await user.generateAuthToken();
+    res.send({ user, token });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.get("/users/me", auth, async (req, res) => {
+  try {
+    res.send(req.user);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
-router.get("/users/:id", async (req, res) => {
+router.get("/users/:id", auth, async (req, res) => {
   const id = req.params.id;
   try {
     const retrivedUser = await User.findById(id);
@@ -32,7 +50,7 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 
-router.patch("/users/:id", async (req, res) => {
+router.patch("/users/:id", auth, async (req, res) => {
   const id = req.params.id;
   const updates = Object.keys(req.body);
 
@@ -54,7 +72,7 @@ router.patch("/users/:id", async (req, res) => {
   }
 });
 
-router.delete("/users/:id", (req, res) => {
+router.delete("/users/:id", auth, (req, res) => {
   const id = req.params.id;
   User.findByIdAndDelete(id)
     .then((user) => {
