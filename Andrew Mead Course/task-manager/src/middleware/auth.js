@@ -17,9 +17,10 @@ const auth = async (req, res, next) => {
 
     // storing user as a ppt on req obj so that the other middlewares can use it
     req.user = user;
+    req.token = token;
     next();
   } catch (e) {
-    res.status(401).send({ error: e });
+    res.status(401).send({ error: "Please Authenticate." });
   }
 };
 

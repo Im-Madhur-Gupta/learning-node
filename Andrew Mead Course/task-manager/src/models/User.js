@@ -73,6 +73,24 @@ userSchema.methods.generateAuthToken = async function () {
   return token;
 };
 
+// VERY IMPORTANT -
+// Instance method to get the public profile
+// Jab bhi mai res.send(<some js object>) kar raha tha to express behind the scenes usse
+// JSON.stringify() kar raha tha
+// About toJSON - 
+// In JavaScript, the JSON.stringify() function looks for functions named toJSON in the object being serialized. If an object has a toJSON function, JSON.stringify() calls toJSON() and serializes the return value from toJSON() instead.
+// TO yaha pe basically mai user object pe toJSON method define kar raha hu.
+userSchema.methods.toJSON = function () {
+  const user = this;
+
+  // toObject() is a mongoose method that returns a js object of user instance
+  // without virtual ppts. Not necessary for now.
+  const userObj = user.toObject();
+  delete userObj.password;
+  delete userObj.tokens;
+  return userObj;
+};
+
 // Adding a static method (model method) to the User schema
 // Model methods mai "this" ki baat hi ni hui to no need for normal function
 // arrow function will work
@@ -91,6 +109,8 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
   return user;
 };
+
+// IMP - Instance methods and Model methods dono SCHEMA pe hi DEFINE hote he.
 
 // IMPORTANT - Yaha "this" binding ka imp use he, to normal function hi declare karna padega.
 // Arrow function won't do the job.
