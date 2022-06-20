@@ -47,3 +47,7 @@ Signature part is used for verification of the token.
 * If I want my app to sign in the user from multiple devices I need to generate multiple tokens for the same account and keep a track of all of the tokens generated for an account, I can simply store all of the tokens in the user's mongodb document.
 
 * In JavaScript, the JSON.stringify() function looks for functions named toJSON in the object being serialized. If an object has a toJSON function, JSON.stringify() calls toJSON() and serializes the return value from toJSON() instead.
+
+* The type of mongodb's _id field is mongoose.Schema.Types.ObjectId
+
+* mongoose's relationship, populate() stuff is confusing, can be avoided.

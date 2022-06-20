@@ -62,18 +62,7 @@ router.get("/users/me", auth, async (req, res) => {
   }
 });
 
-router.get("/users/:id", auth, async (req, res) => {
-  const id = req.params.id;
-  try {
-    const retrivedUser = await User.findById(id);
-    res.send(retrivedUser);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-router.patch("/users/:id", auth, async (req, res) => {
-  const id = req.params.id;
+router.patch("/users/me", auth, async (req, res) => {
   const updates = Object.keys(req.body);
 
   // BELOW METHOD DOESNT RUN THE PASSWORD HASHING MIDDLEWARE
@@ -84,25 +73,23 @@ router.patch("/users/:id", auth, async (req, res) => {
 
   // SO WE CHANGE IT
   try {
-    const user = await User.findById(id);
+    const user = req.user;
     updates.forEach((update) => (user[update] = req.body[update]));
     await user.save();
     res.send(user);
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });
 
-router.delete("/users/:id", auth, (req, res) => {
-  const id = req.params.id;
-  User.findByIdAndDelete(id)
-    .then((user) => {
-      res.send(user);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+router.delete("/users/me", auth, async (req, res) => {
+  try {
+    // user instance pai jaise save() method he waise hi remove() method bhi he.
+    await req.user.remove();
+    res.send(req.user);
+  } catch (e) {
+    res.status(400).send(e);
+  }
 });
 
 module.exports = router;

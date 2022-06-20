@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Task = require("./Task");
 
 const userSchema = new mongoose.Schema({
   // IMPORTANT - We dont want multiple users with the same email account
@@ -56,6 +57,14 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+// Virtual ppt doesnt get stored in DB, it is created by mongoose and can be used just like a regular ppt.
+// Will setup a virtual property that creates a link between user and all of its tasks
+userSchema.virtual("tasks", {
+  ref: "Task",
+  localField: "_id", // local field jisse matching karwani he
+  foreignField: "owner", // foreign field jispe matching hogi
+});
+
 // Adding an instance method
 // IMP - isko bhi normal function ki tarah hi define karna padega due to the "this" keyword.
 userSchema.methods.generateAuthToken = async function () {
@@ -77,7 +86,7 @@ userSchema.methods.generateAuthToken = async function () {
 // Instance method to get the public profile
 // Jab bhi mai res.send(<some js object>) kar raha tha to express behind the scenes usse
 // JSON.stringify() kar raha tha
-// About toJSON - 
+// About toJSON -
 // In JavaScript, the JSON.stringify() function looks for functions named toJSON in the object being serialized. If an object has a toJSON function, JSON.stringify() calls toJSON() and serializes the return value from toJSON() instead.
 // TO yaha pe basically mai user object pe toJSON method define kar raha hu.
 userSchema.methods.toJSON = function () {
@@ -114,6 +123,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
 // IMPORTANT - Yaha "this" binding ka imp use he, to normal function hi declare karna padega.
 // Arrow function won't do the job.
+// instance pe "save" function run hone ke pehle (pre) following middleware chalega
 userSchema.pre("save", async function (next) {
   // our user object is stored in "this"
   const user = this;
@@ -125,6 +135,13 @@ userSchema.pre("save", async function (next) {
 
   // call next when we are done with our middleware's body
   next();
+});
+
+// delete user tasks when the user gets deleted
+// ie AFTER executing user.remove()
+userSchema.post("remove", async function () {
+  const user = this;
+  await Task.deleteMany({ owner: user._id });
 });
 
 const User = mongoose.model("User", userSchema);
