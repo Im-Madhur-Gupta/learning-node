@@ -2,3 +2,17 @@
 
 - Query parameters request URL mai se extract karne ke liye - req.query._____
 - URL parameters request URL mai se extract karne ke liye - req.params._____
+
+- For pagination, we use the following variables -
+1. limit - Ek baar mai kitne documents chahiye.
+2. skip - number of set of documents to be skipped from starting.
+--> Ek set mai limit number of documents is assumed.
+--> We use 2 methods over the find() method -
+    -> skip()
+    -> limit()
+
+- IMPORTANT PPT regarding Sorting -
+--> Boolean vars ko agr "asc" mai sort kara he to false wale pehle ayenge fir true wale.
+--> "dsc" mai iska ulta.
+
+- Note - ?. operator checks only for null or undefined.

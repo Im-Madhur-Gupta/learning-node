@@ -14,10 +14,27 @@ router.post("/tasks", auth, async (req, res) => {
   }
 });
 
-// GET /tasks?completed=<true or false>
+// route structure for sorting -
+// /taks?sortBy=<field1>:<order1>_<field2>:<order2>_<field3>:<order3>
 router.get("/tasks", auth, async (req, res) => {
   try {
     const isCompleted = req.query.completed;
+
+    // number of documents to be sent
+    const limit = parseInt(req.query.limit);
+    // number of set of documents to be skipped from starting
+    const skip = parseInt(req.query.skip);
+
+    let sortStr = "";
+    if (req.query.sortBy) {
+      // will run only if sortBy is neither null nor "".
+      // should be truthy
+      const sortQueries = req.query.sortBy.split("_");
+      sortQueries.forEach((queryStr) => {
+        const [sortField, sortOrder] = queryStr.split(":");
+        sortStr += `${sortOrder === "dsc" ? "-" : ""}${sortField} `;
+      });
+    }
 
     // Is user (_id) ke corresponding tasks fetch karne he
     const tasks =
@@ -26,7 +43,13 @@ router.get("/tasks", auth, async (req, res) => {
             owner: req.user._id,
             isCompleted: Boolean(isCompleted),
           })
-        : await Task.find({ owner: req.user._id });
+            .skip(skip * limit)
+            .limit(limit)
+            .sort(sortStr)
+        : await Task.find({ owner: req.user._id })
+            .skip(skip * limit)
+            .limit(limit)
+            .sort(sortStr);
 
     // Alternative to above, using relationship
     // req.user.populate("tasks").execPopulate();
@@ -38,6 +61,7 @@ router.get("/tasks", auth, async (req, res) => {
     }
     res.send(tasks);
   } catch (e) {
+    console.log("e", e);
     res.status(500).send(e);
   }
 });
