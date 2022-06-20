@@ -1,0 +1,4 @@
+- Now we will setup pagination, filtering and sorting in the task manager app.
+
+- Query parameters request URL mai se extract karne ke liye - req.query._____
+- URL parameters request URL mai se extract karne ke liye - req.params._____
