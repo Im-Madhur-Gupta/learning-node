@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sharp = require("sharp");
 const Task = require("./Task");
 
 const userSchema = new mongoose.Schema(
@@ -56,9 +57,14 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    // property on the schema to hold the profile avatar of the user
+    // will be a buffer containing binary data
+    avatar: {
+      type: Buffer,
+    },
   },
   {
-    // When we unable timestamps, we get 2 additional ppts for each document in our DB - createdAt and updatedAt.
+    // When we enable timestamps, we get 2 additional ppts for each document in our DB - createdAt and updatedAt.
     timestamps: true,
   }
 );
@@ -103,6 +109,10 @@ userSchema.methods.toJSON = function () {
   const userObj = user.toObject();
   delete userObj.password;
   delete userObj.tokens;
+
+  // delete the avatar data from the json object as we already have an endpoint to serve the avatar.
+  delete userObj.avatar;
+
   return userObj;
 };
 
