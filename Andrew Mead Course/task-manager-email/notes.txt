@@ -1,0 +1,3 @@
+- upload.single("__") only accepts a single file, if you try to send multiple files then it results in an error.
+
+- used sharp library to resize and convert the image to desired extension.
