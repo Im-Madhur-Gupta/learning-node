@@ -1,0 +1,41 @@
+- Why tests -
+- Saves time.
+- Helps in creating reliable, bug-free software.
+
+- Tests folder src ke side mai banana he.
+- Uske andar sari tests wali files hongi which will be ending with .test.js.
+- Jest will pick up these .test.js files.
+
+- To create a test we simply use the test() function supplied my jest.
+- test("name-of-test", ()=>{
+    // code you want to run as part of the test
+})
+
+- As part of jest testing our code, jest simply runs the function corresponding to a test, if the function throws an error then the test is considered to have failed otherwise it passes.
+
+- In the test function, we test the computed value against some condition, now this can be done using if else or the expect API offered by Jest.
+    - expect(<computed-value>).toBe(<some-value>) -> toBe() checks for equality.
+    - There are many methods like toBe() in the expect API - https://jestjs.io/docs/expect
+
+
+- Ways to handle asynchronous code in test functions -
+1. To be used with callbacks or promises
+test("___", (done)=>{
+    // idea is to call done() when async task is completed
+    // jab tak done() call ni hoga tab tak Jest test ko complete ni manega.
+    ...
+    done();
+})
+2. To be used with async/await
+test("___", async ()=>{
+    // When Jest sees the test function is async ie it returns a promise, so, Jest waits till the promise gets resolved (pass or fail).
+})
+
+- Jest's default test environment is NodeJS.
+
+- We will use a library called supertest (created by the express team) to make requests to our express app inorder to make sure everthing is working as we want, we will use supertest inside of the test function of Jest's test().
+    - .send({...}) -> To send some data as part of the request.
+    - .expect() -> Expect something from the result.
+
+Node module mocking -
+- I mock node modules by creating files & folders in the test/__mocks__ dir.
